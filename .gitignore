@@ -8,7 +8,7 @@ __pycache__/
 .pytest_cache/
 .mypy_cache/
 
-DT.txt/
+/DT.txt
 
 # Virtual environments
 venv/
