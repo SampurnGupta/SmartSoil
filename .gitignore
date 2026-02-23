@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+
+DT.txt/
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# IDE/editor
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Local runtime/output
+captured_images/*.jpg
+captured_images/*.jpeg
+captured_images/*.png
+*.log

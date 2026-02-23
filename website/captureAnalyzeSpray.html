@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AgroAssist</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <a href="index.html" class="logo">
+        <img src="assets/logo.png" alt="Logo">
+    </a>    
+    <a href="index.html" class="title">AgroAssist</a>
+    <div class="user">
+        <span class="username">For the Farmers 🌾</span>
+    </div>
+  </header>
+
+  <main>
+    <h1>Empowering Farmers, One Field at a Time</h1>
+    <p>Choose a tool to make your farming smarter and easier.</p>
+    <br><br>
+
+    <div class="cards">
+      <div class="card">
+        <h2>Capture, Analyze & Spray <span class="icon">✨</span></h2>
+        <p>
+          Use image capture and smart analysis to monitor your crops and ensure precise spraying.
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>Soil Health Advisor <span class="icon">🌾</span></h2>
+        <p>
+          Assess your soil's condition and get personalized recommendations for better yield.
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>Crop Growth Monitor <span class="icon">🌱</span></h2>
+        <p>
+          Track your crop progress with easy-to-understand insights and improve productivity.
+        </p>
+      </div>
+    </div>
+
+    <br>
+    <!-- Explore button below the cards -->
+    <!-- <button class="explore-btn" onclick="analyzeSoil()">Capture & Analyze Soil</button> -->
+        <button onclick="captureAnalyze()">Capture & Analyze</button>
+        <div id="analysisLoading" style="display: none; margin-top: 1rem; text-align: center;">
+          <img src="assets/Spinner.gif" alt="Loading..." style="width: 50px;">
+          <p>Processing...</p>
+        </div>
+        <div id="analysisResult" style="display: none; margin-top: 1rem; text-align: center;">
+          <img id="analysisImage" src="" alt="Latest Soil Image" style="width: 100%; max-width: 300px; border-radius: 8px; margin-bottom: 1rem;">
+          <p id="phValue" style="font-weight: bold;"></p>
+          <p id="npkValues"></p>
+          <p id="fertilizer" style="color: green; font-weight: bold;"></p>
+        </div>
+
+    <!-- <div id="analysis-result" class="result-box"></div> -->
+
+
+    <br>
+    <div class="quote">
+      <blockquote>"The farmer is the only man in our economy who buys everything at retail, sells everything at wholesale, and pays the freight both ways."</blockquote>
+      <p>- John F. Kennedy</p>
+    </div>
+  </main>
+
+  <footer>
+    © 2025 Team CHUPA CHUPS. Growing together.
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

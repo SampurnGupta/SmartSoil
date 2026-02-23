@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Soil Moisture Detection</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <a href="index.html" class="logo">
+        <img src="assets/logo.png" alt="Logo">
+    </a>    
+    <a href="index.html" class="title">AgroAssist</a>
+    <div class="user">
+        <!-- <img src="https://i.pravatar.cc/30" alt="User Avatar" class="avatar" /> -->
+        <a href="#" class="username">Farmer's Friend</a>
+    </div>
+  </header>
+
+  <main>
+    <h1>Soil Moisture Detection and Watering</h1>
+    <p class="quote">"A healthy soil grows healthy dreams."</p>
+
+    <div class="cards">
+      <div class="card" style="text-align: center;">
+        <h2>Analyze Your Soil <span class="icon">🌱</span></h2>
+        <p>Capture a live image and let us analyze the moisture content for you.</p>
+        <button onclick="captureSoil()">Capture & Check Moisture</button>
+
+        <div id="loading" style="display: none; margin-top: 1.5rem;">
+          <img src="assets/Spinner.gif" alt="Loading..." style="width: 50px;">
+          <p>Analyzing soil condition...</p>
+        </div>
+
+        <div id="result" style="margin-top: 2rem; display: none;">
+          <img id="capturedImage" src="" alt="Captured Soil Image" style="width: 100%; max-width: 300px; border-radius: 8px; margin-bottom: 1rem;">
+          <h3 id="moistureStatus"></h3>
+          <p id="actionTaken" style="color: green; font-weight: bold;"></p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    © 2025 Team CHUPA CHUPS. Growing with you.
+  </footer>
+
+  <script>
+    function captureSoil() {
+      const loading = document.getElementById('loading');
+      const result = document.getElementById('result');
+      const capturedImage = document.getElementById('capturedImage');
+      const moistureStatus = document.getElementById('moistureStatus');
+      const actionTaken = document.getElementById('actionTaken');
+  
+      loading.style.display = 'block';
+      result.style.display = 'none';
+  
+      fetch('http://localhost:5000/analyze_soil')
+        .then(res => res.json())
+        .then(data => {
+          loading.style.display = 'none';
+          result.style.display = 'block';
+  
+          if (data.error) {
+            moistureStatus.textContent = "Image not found. Please wait for the next capture.";
+            actionTaken.textContent = '';
+            capturedImage.src = '';
+            return;
+          }
+  
+          capturedImage.src = data.image_url;
+          moistureStatus.textContent = `Moisture Level: ${data.moisture === 'low' ? 'Low (Dry Soil)' : 'Sufficient (Moist Soil)'}`;
+          actionTaken.textContent = data.action;
+          actionTaken.style.color = data.moisture === 'low' ? 'red' : 'green';
+        })
+        .catch(err => {
+          loading.style.display = 'none';
+          alert('Failed to analyze soil. Make sure the backend is running.');
+          console.error(err);
+        });
+    }
+  </script>
+</body>
+</html>
